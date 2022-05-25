@@ -3,7 +3,8 @@
   
 #### <프로젝트명>.Build.cs
 게임이 어떤 모듈에 dependent한지 기록한다. 언리얼 엔진 자체가 사용하는 모듈들도 적혀있다.  
-나중에 Steam subsystem 등을 사용할 때 이 파일을 건드릴 일이 있을 수 있다.
+나중에 Steam subsystem 등을 사용할 때 이 파일을 건드릴 일이 있을 수 있다.  
+참고: https://docs.unrealengine.com/4.27/ko/ProductionPipelines/DevelopmentSetup/CompilingProjects/
   
   
 #### <프로젝트명>.Target.cs
@@ -22,5 +23,4 @@ Boilerplate code. 게임 모듈을 declare해주는 용도이다.
   
 #### <프로젝트명>GameModeBase.cpp, .h
 사실상 여기에서 유일하게 코드다운 역할을 하는 파일로, 각 게임은 최소한 하나 이상의 GameMode 오브젝트를 필요로 하기 때문에 초기에 생성되어있는 파일이다.
-  
   
