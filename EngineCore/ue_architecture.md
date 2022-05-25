@@ -3,6 +3,8 @@ https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWith
   
 ![image](https://user-images.githubusercontent.com/63915665/170287876-0db00cd8-0d29-41d1-aad9-8eb9a9a76a6f.png)
   
+![image](https://user-images.githubusercontent.com/63915665/170291503-e32df753-bae5-4a5c-a7cc-c13844c047eb.png)
+  
   
 ### AGameMode
 게임모드 오브젝트로, 가장 코어가 되는 게임 로직을 처리하는 것을 담당한다.  
