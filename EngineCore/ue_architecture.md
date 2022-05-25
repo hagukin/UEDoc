@@ -15,7 +15,7 @@ https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWith
 APlayerController가 있어야 아래 기능들을 사용할 수 있다.  
   
 **AHUD**  
-기본적인 디버깅 HUD를 제공한다. 인게임 HUD와 별개이다!  
+기본적인 디버깅 HUD를 제공한다.
 **APlayerCameraManager**  
 플레이어 카메라를 관리한다.  
 **UPlayerInput**  
