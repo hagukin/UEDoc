@@ -9,6 +9,7 @@ https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWith
 ### AGameMode
 게임모드 오브젝트로, 가장 코어가 되는 게임 로직을 처리하는 것을 담당한다.  
 모든 게임은 하나 이상의 게임 모드 오브젝트를 가져야 한다.  
+참고: https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/Framework/GameMode/
   
   
 ### APlayerController
