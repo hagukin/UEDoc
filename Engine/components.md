@@ -14,6 +14,8 @@ Actor Component를 상속.
 월드 내에 물리적으로 존재하지만 시각적 요소를 필요로 하지 않는다 (안보여도 됨)  
 예시로는 spring arms, cameras, physics forces, constraints가 있다.  
 오디오나 physics objects 들은 포함되지 않는다.
+
+SceneComponent 혹은 그 상속 클래스들을 사용 시 클래스 내에는 반드시 RootComponent가 존재해야 한다. (지정해줘야 한다)  
   
 3. Primitive Component (UPrimitiveComponent)  
 Scene Component를 상속.  
