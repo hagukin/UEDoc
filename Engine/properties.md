@@ -36,6 +36,8 @@ archetypes와 instance 중 어디서 수정 가능한지를 지정.
 3. category to which the property belongs (자유롭게 설정 가능)  
   
 4. transient  
+![image](https://user-images.githubusercontent.com/63915665/172053072-58f62c49-0cb2-4c09-b42a-d8d090930d0a.png)  
+  
 https://forums.unrealengine.com/t/where-to-use-a-transient-variable/17494/12
 ```
 A:
@@ -91,8 +93,11 @@ and perhaps most important of all, automatic referencing which prevents the UObj
 특히 GC가 제거해준다는 점이 중요하다. 
 ```
 Transient를 붙여주는 걸로 해당 프로퍼티를 언리얼 엔진의 직렬화 과정에서 제외할 수 있다.  
+  
+이렇게 제외하는 게 엔진 내적으로 어떤 영향을 주는지를 100% 이해하지 못했다. 관련된 세부적인 설명이 나와있는 자료를 아직 찾지 못했다. 현재 추정하기로는 게임 전체 퍼포먼스가 향상되는 대신(직렬화 시간이 줄기 때문) 에디터에서 블루프린트를 편집할 때 아키타입의 디폴트값을 지정하지 못하게 될 것이라고 생각된다. 즉 블루프린트에서 x라는 프로퍼티를 100으로 설정해주고 그 블루프린트를 레벨에 드래그 앤 드랍해도 x는 그냥 0일 것이다. 혹은 블루프린트 상에서 x라는 값 자체가 편집 불가능해질 지도 모르겠다.  
 
-![image](https://user-images.githubusercontent.com/63915665/172053072-58f62c49-0cb2-4c09-b42a-d8d090930d0a.png)  
+
+---
 
 
 
