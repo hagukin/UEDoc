@@ -1,3 +1,5 @@
+공식 레퍼런스: https://docs.unrealengine.com/5.0/en-US/unreal-engine-actor-lifecycle/  
+  
 ![image](https://user-images.githubusercontent.com/63915665/175551660-449a4fc6-6ad7-44ab-99c5-5abff96afd9d.png)  
 액터는 위 사진과 같은 과정을 거치며 생성, 초기화, 업데이트(tick), 그리고 파괴 등을 처리한다.  
   
