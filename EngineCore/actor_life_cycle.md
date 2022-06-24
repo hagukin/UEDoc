@@ -23,6 +23,7 @@
     * PostInitializeComponents
     * BeginPlay
    대부분의 경우 PostInitializeComponents를 사용하는 게 권장된다. BeginPlay는 게임이 시작된 이후 호출되므로 가급적 무거운 연산을 넣지 않는 게 권장된다.  
+   또 BeginPlay를 제외한 나머지 위에서 언급한 방식들은 게임이 실행되기 전 초기화를 하는 것이므로 에디터 상에 초기화된 값이 제대로 표시된다. 다르게 말하면, BeginPlay()에 초기화한 내용들은 에디터 상에 표시되지 않으므로 주의해야 한다.  
 
 
 ---  
