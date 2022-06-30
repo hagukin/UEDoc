@@ -1,12 +1,12 @@
 # Trigger
 * Trigger란?  
 언리얼에서 Collision events들은 trigger라는 액터를 이용해 감지할 수 있다. 베이스는 ATriggerBase라는 액터로, 하위 클래스로 ATriggerCapsule, ATriggerSphere, ATriggerBox가 있다.  
-![image](https://user-images.githubusercontent.com/63915665/176695712-8e85e454-5fc1-4a83-9253-7738075fcd70.png)  
 
 ---  
 
 # Collision
 ## Overlap (겹침)
+![image](https://user-images.githubusercontent.com/63915665/176695712-8e85e454-5fc1-4a83-9253-7738075fcd70.png)  
 * AActor::NotifyActorBeginOverlap  
 Event when this actor overlaps another actor, for example a player walking into a trigger. For events when objects have a blocking collision, for example a player hitting a wall, see 'Hit' events. @note Components on both this and the other Actor must have bGenerateOverlapEvents set to true to generate overlap events.  
 주의점은 이 함수가 Trigger 뿐 아니라 모든 Actor에게 존재한다는 점이다.  
