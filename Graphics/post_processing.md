@@ -10,3 +10,5 @@ PostProcessingVolume 하나는 하나의 blend layer이다. 즉 다른 blend lay
 Blend Radius라는 프로퍼티값은 레벨 상의 볼륨의 위치에 따라 얼마만큼 반경에 이펙트를 줄지를 조절할 수 있게 해준다.  
 Distance in Unreal units around the volume at which blending with the volume's settings occurs.  
 
+다양한 시각 효과 및 화면 밝기, 전반적인 색상 톤 입히기 등 대부분의 시각 효과 처리를 지원한다.  
+
