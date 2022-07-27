@@ -11,11 +11,18 @@
 
 * Abs, Sign
 ![image](https://user-images.githubusercontent.com/63915665/181253555-95826602-2a3c-4a96-8396-9c1618311183.png)  
-
 간혹 1,-1만을 반환하는 (즉 0일 경우 무시하는) 특수한 경우의 Sign함수가 필요할 때가 있다. 이를 UnitSign이라고 한다.  
 ![image](https://user-images.githubusercontent.com/63915665/181254106-53277c26-e109-4c5c-96fa-f8e1f911e348.png)  
 어떤 라디안 값을 0~2pi 사이의 같은 방향의 값으로 반환하는 함수를 만들 때 필요하다.  
 ![image](https://user-images.githubusercontent.com/63915665/181254202-51d7c067-3274-4a96-9f7d-8b2ed0ed0920.png)  
 mod 0을 해버리면 값이 그대로 나오기 때문임.  
 (참고: ![image](https://user-images.githubusercontent.com/63915665/181254480-fc01be36-24bd-423a-a7e0-6a9af7306d72.png)  )
+
+* Pow
+Pow를 이용해 굳이 expensive한 function 사용 대신 비슷한 효과들을 연출할 수 있다.  
+어떤 HUD를 pop하게(크기가 커지면서 나타나게) 만들려고 한다고 할 때, 다음과 같은 형태로 구현이 가능하다.  
+![image](https://user-images.githubusercontent.com/63915665/181255539-8fa100f6-6c48-4e18-b79e-b825b921bd03.png)  
+
+언리얼의 FMath::Pow는 양수만 인풋으로 받을 수 있는데, 간단한 수정을 통해 양수 음수 모두 사용가능하게 만들 수 있다.  
+![image](https://user-images.githubusercontent.com/63915665/181255791-bfef4901-6e77-4f03-b4b5-24f39d437e7f.png)  
 
