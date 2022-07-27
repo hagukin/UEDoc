@@ -1,3 +1,6 @@
+FMath 레퍼런스 - https://docs.unrealengine.com/4.27/ko/RenderingAndGraphics/Materials/ExpressionReference/Math/  
+
+
 * UE에서는 각과 라디안을 사용하는 경우가 나뉘어있다!  
 ![image](https://user-images.githubusercontent.com/63915665/181250293-f02e1f0d-824d-4830-9db1-8b755bd66c05.png)  
 때문에 각도 관련 함수 사용 시 항상 레퍼런스 체크할 것.  
@@ -25,4 +28,16 @@ Pow를 이용해 굳이 expensive한 function 사용 대신 비슷한 효과들�
 
 언리얼의 FMath::Pow는 양수만 인풋으로 받을 수 있는데, 간단한 수정을 통해 양수 음수 모두 사용가능하게 만들 수 있다.  
 ![image](https://user-images.githubusercontent.com/63915665/181255791-bfef4901-6e77-4f03-b4b5-24f39d437e7f.png)  
+
+* Interpolation
+![image](https://user-images.githubusercontent.com/63915665/181256619-90f78ed7-7ea0-4c42-b32b-925ba043e6db.png)  
+![image](https://user-images.githubusercontent.com/63915665/181256651-2e6dc713-2b7f-46b6-8793-b011bee2bdde.png)  
+![image](https://user-images.githubusercontent.com/63915665/181256740-c41d9c61-5322-4938-838b-9feffb44ddc2.png)  
+
+Bilinear Filtering에도 사용됨  
+![image](https://user-images.githubusercontent.com/63915665/181257774-641a9e37-41cb-45b3-b0f0-c6193ea5c117.png)  
+참고 - Frac은 소숫점 부분을 반환함. Frac(1.2) = 0.2; Frac(-0.2)=0.8;  
+![image](https://user-images.githubusercontent.com/63915665/181257999-69461f0d-7bec-4499-8a44-6026d6dd74f8.png)  
+원리는 아주 단순함. 두번 Linear interpolation을 한다고 해서 bilinear filtering임.  
+
 
