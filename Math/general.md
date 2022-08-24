@@ -39,5 +39,77 @@ Bilinear Filtering에도 사용됨
 참고 - Frac은 소숫점 부분을 반환함. Frac(1.2) = 0.2; Frac(-0.2)=0.8;  
 ![image](https://user-images.githubusercontent.com/63915665/181257999-69461f0d-7bec-4499-8a44-6026d6dd74f8.png)  
 원리는 아주 단순함. 두번 Linear interpolation을 한다고 해서 bilinear filtering임.  
+  
+부드러운 움직임을 표현할 때는 linear interpolation과 함께 Pow를 사용해주면 된다.  
+그냥 interpolate만 해버리면 속도가 0에서 V로 가속도없이 바로 움직여버려 다소 어색할 수 있다.  
+![image](https://user-images.githubusercontent.com/63915665/186427235-e53362e3-e7bf-4014-ac32-848581021c53.png)  
+![image](https://user-images.githubusercontent.com/63915665/186427305-0fbcf282-4457-40a5-9c21-a89fffc3aa48.png)  
+![image](https://user-images.githubusercontent.com/63915665/186427461-0510bc44-3249-420a-a244-51f45e546557.png)  
+![image](https://user-images.githubusercontent.com/63915665/186428626-02c3ea32-de63-47ca-96a9-0f8baa2ed1e7.png)
+In-out 커브는 sigmoid curve / 시그모이드 함수로도 불리운다.  
+![image](https://user-images.githubusercontent.com/63915665/186429131-e6ab36fe-4dc3-43df-b3b6-ca76413d0ec9.png)
+p가 커질 경우 더 빠르게 가파라진다.  
+  
+이를 시간에 따라 부드럽게 움직이게 만들어보자. (Time-based smoothing)  
+이는 카메라 이동 등에 적용될 수 있다.  
+![image](https://user-images.githubusercontent.com/63915665/186429522-45abfb31-2f39-41b4-9f13-1b60457284ed.png)  
+기본적인 원리는 위와 같이 구현가능하다. targetYaw는 이번 프레임의 Yaw이고 oldYaw는 이전 프레임의 Yaw이다. 즉 마우스가 움직여 카메라의 Yaw값이 변화할 때, 1프레임 후 targetYaw로 바로 가는게 아니라 선형보간을 거쳐 그 사이의 지점으로 이동하는 것이다.  
+위 코드는 문제가 있는데, 실제 게임 환경은 프레임레이트가 계속 변화하기 때문에, smoothingRatio값을 고정한 위 코드의 경우 문제가 발생한다. 마우스를 현실에서 일정한 속도로 움직이더라도 초당 프레임 처리횟수가 달라지게 되면 더 많거나 더 적게 움직일 수 있기 때문이다.  이를 해결하는 방법은 언리얼에서 제공하는 deltaSeconds를 활용하는 것이다. delta second이란 이전 프레임에서 해당 프레임까지 걸린 시간을 의미한다.  
+![image](https://user-images.githubusercontent.com/63915665/186430906-3e0b9e50-1b2f-4c11-a2e6-0d7103cb965b.png)  
+![image](https://user-images.githubusercontent.com/63915665/186431596-16088f75-ab99-42fd-acf9-881ab7b15f65.png)  
+위 코드처럼 수정하면, 한 프레임을 처리하는데 다른 프레임들보다 오랜 시간이 걸렸다면 그만큼 Pow의 지수값을 높여주는 것으로 더 많이 움직이게 만들어 그 차이를 조정하는 것을 볼 수 있다. authoredFPS를 유지)  
+
+이러한 기법이 실제로 활용되는 한가지 예시를 살펴보자.  
+![image](https://user-images.githubusercontent.com/63915665/186432115-a84d0297-3e68-4deb-898b-77a4f3e96cca.png)  
+차량 뒤의 부스터 화염 이펙트가 차량의 속도에 비례해 길게 렌더링된다고 해보자. 이때 만약 이 길이를 차량의 속도에 항상 프레임마다 정비례하게 만든다면, 차량 속도가 시시각각 변하는 레이싱 게임의 특성상 불꽃이 들쭉날쭉거릴텐데, 여기에 시간에 따라 선형보간되게 만든다면 차량이 속도가 빨라질때 자연스럽게 불꽃도 부드럽게 길어지고, 반대일 때는 부드럽게 줄어드는 효과를 연출할 수 있다.  
+  
+* 난수 생성 (Random Number Generation)  
+![image](https://user-images.githubusercontent.com/63915665/186432717-617c2c23-ba38-438d-ad57-2a4afb347ac0.png)  
+![image](https://user-images.githubusercontent.com/63915665/186432872-02f46713-de44-4691-83c3-9dfec47dfe6a.png)  
+언리얼의 FMath는 다양한 RNG함수를 제공한다.  
+RandHelper, RandHelper64는 32,64비트 정수 범위의 난수를 생성한다.  
+RandCone는 주어진 각도 사이의 랜덤한 방향 벡터를 반환한다.  
+RandPointInCircle과 RandPointInBox는 말 그대로의 역할을 한다.  
+  
+![image](https://user-images.githubusercontent.com/63915665/186433859-eaaef696-28fc-4d8e-8a29-34e92f7fc12e.png)  
+FMath::RandInit으로 RNG의 시드를 지정할 수도 있다.  
+기본값은 clock value이다.  
+이때 주의해야 할 것은 UE의 RNG는 shared resource이기 때문에 시드를 변경하는 것은 게임 전반은 물론이고 엔진 내부적으로도 영향을 미칠 수 있다는 점이다.  
+엔진 자체에 FRandomStream이라는 별도의 RNG가 있지만 썩 권장되지 않는다.  
+때문에 어떠한 이유로 시드를 지정해 랜덤성에 대한 통제가 필요하다면 직접 제작하는 게 권장된다.  
+
+![image](https://user-images.githubusercontent.com/63915665/186434558-56f0e4ff-de45-4473-933d-917441addcf7.png)  
+![image](https://user-images.githubusercontent.com/63915665/186434602-98e76075-c01c-485e-8e78-d91aa4057f06.png)  
+![image](https://user-images.githubusercontent.com/63915665/186434620-c01b7e91-52ab-422d-9442-2978ffe6b709.png)  
+또한 완전히 랜덤한 RNG 대신 "랜덤하게 느껴지는" RNG를 원하면 이 역시 별도의 구현이 필요하다.  
+이처럼 RNG를 수정해야 할 때는 별도의 클래스로 Wrap하는 게 권장된다.  
+언리얼의 RNG는 C의 rand에 의존하고 있음을 참고. (C의 rand는 문제점들이 있으나, 근래 개선된 것으로 알려짐. Mersenne Twister 알고리즘 등의 사용도 고려해볼 것, 그러나 거의 대부분의 경우 rand로도 충분할 것이다)  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
