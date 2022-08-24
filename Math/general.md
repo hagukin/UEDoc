@@ -86,6 +86,17 @@ FMath::RandInit으로 RNG의 시드를 지정할 수도 있다.
 언리얼의 RNG는 C의 rand에 의존하고 있음을 참고. (C의 rand는 문제점들이 있으나, 근래 개선된 것으로 알려짐. Mersenne Twister 알고리즘 등의 사용도 고려해볼 것, 그러나 거의 대부분의 경우 rand로도 충분할 것이다)  
 
 
+* Vector  
+![image](https://user-images.githubusercontent.com/63915665/186436567-1c209f4c-1068-421c-b36d-fb5ae1788b4d.png)  
+언리얼에서 Vector는 거의 항상 floats를 저장한다. (FVector)  
+대체적으로 2, 3, 4 크기짜리의 벡터들을 사용할 것이며, 이 세 가지로도 대부분의 것들을 만드는데 부족함이 없을 것이다.  
+언리얼은 Left handed coordinate system을 사용하며, Vector는 이 3차원 공간에서 위치나 direction을 나타낼 때 사용된다.  
+(당연히 수학에서의 벡터처럼 길이와 방향에 대한 정보를 모두 포함할 수도 있다)  
+  
+![image](https://user-images.githubusercontent.com/63915665/186436723-9080939d-a6c9-45d4-8e7b-d8dd2e3711bd.png)
+참고: 언리얼에서의 vector.Size()는 STL에서의 size와 다르다. 이에 혼동하지 않도록 하자.  
+  
+
 
 
 
