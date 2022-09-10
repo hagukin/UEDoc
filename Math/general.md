@@ -84,8 +84,8 @@ FMath::RandInit으로 RNG의 시드를 지정할 수도 있다.
 또한 완전히 랜덤한 RNG 대신 "랜덤하게 느껴지는" RNG를 원하면 이 역시 별도의 구현이 필요하다.  
 이처럼 RNG를 수정해야 할 때는 별도의 클래스로 Wrap하는 게 권장된다.  
 언리얼의 RNG는 C의 rand에 의존하고 있음을 참고. (C의 rand는 문제점들이 있으나, 근래 개선된 것으로 알려짐. Mersenne Twister 알고리즘 등의 사용도 고려해볼 것, 그러나 거의 대부분의 경우 rand로도 충분할 것이다)  
-
-
+  
+  
 * Vector  
 ![image](https://user-images.githubusercontent.com/63915665/186436567-1c209f4c-1068-421c-b36d-fb5ae1788b4d.png)  
 언리얼에서 Vector는 거의 항상 floats를 저장한다. (FVector)  
@@ -96,6 +96,54 @@ FMath::RandInit으로 RNG의 시드를 지정할 수도 있다.
 ![image](https://user-images.githubusercontent.com/63915665/186436723-9080939d-a6c9-45d4-8e7b-d8dd2e3711bd.png)
 참고: 언리얼에서의 vector.Size()는 STL에서의 size와 다르다. 이에 혼동하지 않도록 하자.  
   
+
+* Dot product, Cross product
+내적과 외적은 크게 어려울 게 없고, 그냥 구현해서 쓰면 된다.  
+![image](https://user-images.githubusercontent.com/63915665/189484057-ccf0f211-cf40-47da-8af0-c3c3d6528662.png)  
+![image](https://user-images.githubusercontent.com/63915665/189484085-3b0ba02d-60b5-4bde-8e32-3b401d488862.png)  
+
+(참고: direction은 항상 normalized 된 벡터로 나타내는 관습이 있다)  
+  
+  
+* Quaternions  
+![image](https://user-images.githubusercontent.com/63915665/189484274-469b2b7e-0220-468b-9f73-33513f22efb1.png)  
+속도도 빠르고 부드럽게 Slerp(Spherical linear interpolation)을 할 수 있다.  
+그러나 다소 비직관적이고, Slerp할 일 자체가 아주 많지는 않기 때문에 Rotator가 더 자주 쓰이는 경향이 있다.  
+  
+  
+* Rotators  
+Roll, Pitch, Yaw 세 축의 회전으로 orientation을 나타내며, 라디안이 아닌 각(360)을 사용한다.  
+![image](https://user-images.githubusercontent.com/63915665/189484460-8066b0ab-e11d-4d7f-a328-133400af1055.png)  
+빠르게 Quaternion과 상호 변환이 가능하다.  
+![image](https://user-images.githubusercontent.com/63915665/189484495-92a35eef-32e8-4752-8e99-988a2b75612b.png)
+360도 이상 혹은 -360도 이하로도 각을 설정할 수 있다.  
+Quaternion으로 변환할 경우 이 정보들은 사라진다. (즉 여러 바퀴 돈 상태는 표현할 수 없다)  
+Quaternion을 Rotator로 다시 변환하면 각은 -180~180 사이로 표현된다.  
+Rotator.Normalize()를 이용해 수동으로 각 범위를 맞춰줄 수도 있다.  
+![image](https://user-images.githubusercontent.com/63915665/189484685-fe1fd8ee-1ab8-42fb-ae7d-e7fd235b83ea.png)  
+  
+두 Rotator를 Lerp할 경우 최단 경로를 따라 Lerp한다. 즉 -170과 170 사이를 Lerp하면 340도 도는 게 아닌, 20도만 회전한다.  
+또 각을 먼저 Normalize하고 Lerp하므로 180도 이상 회전시킬 수 없다.  
+물론 수동으로 긴 경로를 따라 lerp하게 하거나, 큰 각을 가진 Rotator 사이에서 여러 바퀴 회전하게 Lerp할 수도 있다.  
+lerp를 smooth하게 처리해주는 RInterpTo 함수도 존재한다.  
+![image](https://user-images.githubusercontent.com/63915665/189484812-742f2131-01ed-435f-9ab8-009f07e492f9.png)
+  
+Rotator는 Vector로 변환이 가능하다. Rotator가 가리키는 방향을 가리키는 Normalized 된 벡터(1.0, 0.0, 0.0)를 해당 방향으로 바라보게 한 벡터를 반환한다고 생각하면 된다.  
+![image](https://user-images.githubusercontent.com/63915665/189484908-e33f0ff9-bfa9-4668-8279-9d68539cdd38.png)  
+  
+Rotator와 Quaternion 모두 특정 Vector를 회전시키는 데 쓸 수 있다.  
+![image](https://user-images.githubusercontent.com/63915665/189484935-c814c110-e3cd-41a5-92fc-290793560d09.png)  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
