@@ -133,6 +133,19 @@ Rotator는 Vector로 변환이 가능하다. Rotator가 가리키는 방향을 �
   
 Rotator와 Quaternion 모두 특정 Vector를 회전시키는 데 쓸 수 있다.  
 ![image](https://user-images.githubusercontent.com/63915665/189484935-c814c110-e3cd-41a5-92fc-290793560d09.png)  
+  
+  
+* Transforms  
+![image](https://user-images.githubusercontent.com/63915665/189484995-2a5be934-8822-450b-86d2-28814f369867.png)  
+TRS / Translation Rotation Scale 로 구성된 정보이다.  
+
+어떤 정점들(벡터들)을 Transform하는 건 다음과 같다.  
+![image](https://user-images.githubusercontent.com/63915665/189485060-725cd7b9-c1f6-4c4d-9912-152d8b5564cb.png)  
+내부적으로는 다음과 같은 형태로 처리된다.  
+![image](https://user-images.githubusercontent.com/63915665/189485070-d803e27c-a1f2-483b-837a-caf86318b0ea.png)  
+벡터뿐 아니라 온갖 데이터들을 Transform의 메소드를 사용해 변형할 수 있다.  
+(Scaling은 처리하지 않는 TransformPositionNoScale 함수도 있음을 볼 수 있다)  
+![image](https://user-images.githubusercontent.com/63915665/189485145-0b4da216-7ff5-4650-a178-3817ab95cc2f.png)  
 
 
 
@@ -142,33 +155,8 @@ Rotator와 Quaternion 모두 특정 Vector를 회전시키는 데 쓸 수 있다
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  
 
 
 
