@@ -147,16 +147,14 @@ TRS / Translation Rotation Scale 로 구성된 정보이다.
 (Scaling은 처리하지 않는 TransformPositionNoScale 함수도 있음을 볼 수 있다)  
 ![image](https://user-images.githubusercontent.com/63915665/189485145-0b4da216-7ff5-4650-a178-3817ab95cc2f.png)  
 
+* Transform  
+Math/coordiante_spaces.md 참조  
 
-
-
-
-
-
-
-
-  
-  
-
-
-
+* Matrices  
+![image](https://user-images.githubusercontent.com/63915665/194565711-e7e88bc4-4779-417d-b446-0aff17d677b0.png)  
+보다 더 로우레벨한 게임 개발에서와는 다르게, 언리얼 엔진에서 엔진 사용자가 matrix를 직접 조작할 일은 많지 않다.  
+언리얼에서는 FMatrix라는 형태로 4x4 행렬을 제공하는데, 이를 직접 사용해야 할 소요가 발생할 일은 거의 없다.  
+![image](https://user-images.githubusercontent.com/63915665/194567289-251014d9-f8bf-43df-b849-9e713b18c300.png)  
+한 가지 유용한 사용처는, 오브젝트의 forward, up(또는 up right 등 아무 2 방향)이 주어졌을 때 이를 이용해 해당 오브젝트의 Quaternion을 구하는 것으로, 사실 이것도 FTransform을 이용해 구할 수는 있으나 FTransform을 사용하게 되면 FTransform을 생성하는 과정에서 불필요한 연산들이 처리되므로 CPU 사용량을 조금이라도 줄이고 싶다면 이 방식대로 하면 된다.  
+![image](https://user-images.githubusercontent.com/63915665/194568098-97424503-1486-4f7c-8f8c-2ad3faf52ed0.png)
+그 밖에 참고 사항으로는 역행렬을 구해야 할 경우 직접 matrix를 inverse 시켜주는 게 transform을 이용해 inverse하는 것보다 빠르다. (단 transform을 inverse 시킬 경우 그냥 transform 내부의 메소드를 그대로 사용하면 된다)  
