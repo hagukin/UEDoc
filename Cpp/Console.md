@@ -20,4 +20,6 @@ C++ 파일에서 콘솔에 사용될 명령어를 작성해줄 수도 있다. �
 여기서 살펴보면 OurGame.ExtraMagnetism을 extraForce라는 이름으로 static하게 저장하는 것을 알 수 있는데, static이기 때문에 한번 선언하는 것으로 캐싱되어 런타임 동안 빠르게 사용할 수 있다.  
 (주석: 왜 굳이 Tick에서 선언하는지는 잘 모르겠다)  
 
-
+![image](https://user-images.githubusercontent.com/63915665/204086376-3daa017b-50ae-4fb5-95e2-fa23f52c97c9.png)  
+이런 콘솔 전역 변수들의 기본값을 config에서 지정해줄 수 있다. DegaultEngine.ini파일 내의 SystemSettings 항목에 작성해주면 된다.  
+주의) 이 콘픽 값은 대부분 모든 dev들에게 공유되므로 version control 간에 임시로 수정해둔 내 config이 다른 사람에게 넘어가지 않도록 주의하자.  
