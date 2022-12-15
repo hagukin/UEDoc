@@ -1,9 +1,9 @@
-<h3>Stock engine</h3>
+### Stock engine
 
 통상적으로 에픽게임즈에서 다운받는 언리얼 엔진. 
 소스코드를 수정해 recompile할 수 없다.
 
-<h3>Customizable engine</h3>
+### Customizable engine
 
 소스코드를 수정해 recompile할 수 있다!  
 엔진을 수정해야 할 일이 있을 것 같은 경우 처음부터 Customizable engine을 사용할 것. 중간에 바꾸는 건 사실상 불가능하다. 
@@ -26,7 +26,9 @@ Visual Assist 또는 ReSharper C++ extension의 사용도 추천.
 
 엔진 버전 컨트롤의 경우 git도 괜찮고 perforce도 괜찮음.  
 
-
+### Custom하는 과정
+ProUE 70 참고  
+GRIP을 위해 커스터마이징된 엔진과 원본 언리얼 엔진을 비교하며 WinMerge를 이용해 다른 코드들을 확인하면서 프로젝트에 바로 사용할 수 있도록 똑같이 복붙하는 과정으로, 앞부분은 거의 그냥 설명없이 복붙하는 내용이고 31분 가량부터 변경한 내용들에 대한 설명이 간략하게 나온다.  
 
 <h3>본 문서를 작성하는 데 참고한 자료들</h3>  
 
