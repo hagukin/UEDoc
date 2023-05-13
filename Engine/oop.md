@@ -6,6 +6,11 @@
   
 모든 클래스 멤버변수의 초기화는 클래스 생성자 대신 헤더파일에서 정의하는 것이 매우 권장된다.  
 클래스 같이 아직 생성되지 않은 값들은 nullptr로 초기화해두면 된다.  
+(ProUE 어딘가에서 들은 내용)  
+
+그러나 별 상관 없다고 말하는 사람들도 있음  
+https://forums.unrealengine.com/t/is-there-a-difference-in-initialzing-variables-in-the-header-vs-constructor/254878  
+
 ![image](https://user-images.githubusercontent.com/63915665/174269134-38eb4b64-1313-4ed2-b565-147d3d242d75.png)  
 ![image](https://user-images.githubusercontent.com/63915665/174267499-75756ae9-f94c-4bac-b5da-5a525e040fbb.png)
   
